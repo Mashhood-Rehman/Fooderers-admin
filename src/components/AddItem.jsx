@@ -20,30 +20,48 @@ const changeHandler = (e) => {
  
 const [image, setImage] = useState(false)
 useEffect(()=> {
-console.log(data)
 }, [data])
-const onSubmit = async ( e) => {
-  
-  e.preventDefault()
-const formdata = new FormData()
-formdata.append("name" , data.name)
-formdata.append("amount" , data.amount)
-formdata.append("price" , Number(data.price))
-formdata.append("category" , data.category)
-formdata.append("description" , data.description)
-formdata.append("image" , data.image)
-const response = await axios.post(`http://localhost:5000/productcreate` , formdata)
-if (response.data.success) {
-  setData({
-    name : "",
-    amount : "",
-    category : "",
-    price : "",
-    description : ""
-  })
-  setImage(false)
-}
-}
+const onSubmit = async (e) => {
+  e.preventDefault();
+
+  const formdata = new FormData();
+  formdata.append("name", data.name);
+  formdata.append("amount", data.amount);
+  formdata.append("price", Number(data.price));
+  formdata.append("category", data.category);
+  formdata.append("description", data.description);
+  if (image) {
+    formdata.append("image", image);
+  }
+
+  console.log("Submitting form data:", {
+    name: data.name,
+    amount: data.amount,
+    price: data.price,
+    category: data.category,
+    description: data.description,
+    image: image ? image.name : null, // Just for debugging
+  });
+
+  try {
+    const response = await axios.post(`http://localhost:5000/productcreate`, formdata);
+    if (response.data.success) {
+      setData({
+        name: "",
+        amount: "",
+        category: "FastFood",
+        price: "",
+        description: ""
+      });
+      setImage(null); // Reset image state
+    } else {
+      console.error("Error submitting data:", response.data.message);
+    }
+  } catch (error) {
+    console.error("Error during submission:", error);
+  }
+};
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <form onSubmit={onSubmit}>
