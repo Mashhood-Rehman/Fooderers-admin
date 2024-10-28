@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios"
@@ -31,7 +31,7 @@ const onSubmit = async (e) => {
   formdata.append("category", data.category);
   formdata.append("description", data.description);
   if (image) {
-    formdata.append("image", image);
+    formdata.append("picture", image);
   }
 
   console.log("Submitting form data:", {
