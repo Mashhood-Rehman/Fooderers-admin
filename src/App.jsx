@@ -1,10 +1,8 @@
-import React from 'react';
 import Sidebar from './components/Sidebar';
 import Orders from './components/Orders';
 import Products from './components/Products';
 import Users from './components/Users';
 import { Route , Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
 import AddItem from './components/AddItem';
 
 const App = () => {
@@ -12,14 +10,13 @@ const App = () => {
 console.log(PagePath)
   return (
     <>
-    {PagePath == "http://localhost:5173/AddItems" ? <Routes>
+    {PagePath == "http://localhost:3000/AddItems" ? <Routes>
       <Route path='/AddItems' element= {<AddItem/>} />
 
     </Routes> :
     
     <div>
 
-    <Navbar/>
     <div className="flex lg:-mt-[4%]">
         <Sidebar />
         <div className="flex-1">
