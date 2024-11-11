@@ -7,7 +7,7 @@ const Users = () => {
   const [users, setUsers] = useState([]);
 
 const delUser = async (_id) => {
-  const response = await axios.delete(`http://localhost:5000/delUser/${_id}`)
+  const response = await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/delUser/${_id}`)
   try {
     if(response.data.success){
       setUsers(users.filter((users)=>users._id !== _id))

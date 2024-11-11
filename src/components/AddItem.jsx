@@ -44,7 +44,7 @@ const onSubmit = async (e) => {
   });
 
   try {
-    const response = await axios.post(`http://localhost:5000/productcreate`, formdata);
+    const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/productcreate`, formdata);
     if (response.data.success) {
       setData({
         name: "",

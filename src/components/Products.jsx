@@ -10,13 +10,13 @@ const Products = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/getAllProducts")
+      .get(`${import.meta.env.VITE_API_BASE_URL}/getAllProducts`)
       .then((response) => setProducts(response.data.products))
       .catch((err) => console.error("Error fetching products:", err));
   }, []);
 
   const removeFood = async (_id) => {
-    const response = await axios.delete(`http://localhost:5000/deleteProducts/${_id}`);
+    const response = await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/deleteProducts/${_id}`);
     try {
       if (response.data.success) {
         setProducts(products.filter((product) => product._id !== _id));
